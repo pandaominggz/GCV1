@@ -24,7 +24,7 @@ tsfm=transforms.Compose([transforms.ToTensor(),transforms.Normalize(mean=(0.5, 0
 h=224
 w=480
 maxdisp=160 #gc_net.py also need to change  must be a multiple of 32...maybe can cancel the outpadding of deconv
-batch=2
+batch=1
 net = GcNet(h,w,maxdisp, batch)
 devices = torch.cuda.current_device()
 net = net.to(devices)
@@ -114,7 +114,7 @@ def train(epoch_total,loadstate):
             if step%10==0 or step==len(dataloader)-1:
                 loss_list.append(train_loss/(step+1))
                 acc_list.append(acc_total/(step+1))
-            if step==len(dataloader)-1:
+            if step==len(dataloader)-1 and epoch%100==0:
                 print('=======>saving model......')
                 # state={'net':net.state_dict(),'step':step,
                 #        'loss_list':loss_list,'epoch':epoch,'accur':acc_total}
@@ -190,7 +190,7 @@ def test(loadstate):
     return disp
 
 def main():
-    epoch_total=100
+    epoch_total=2000
     load_state=False
     train(epoch_total,load_state)
     # test(load_state)
