@@ -233,13 +233,13 @@ class GC_NET(nn.Module):
         conv3d_block_4=self.block_3d_4(conv3d_27)
         
         #deconv
-        deconv3d=F.relu(self.debn1(self.deconv1(conv3d_block_4))+conv3d_block_3)
-        deconv3d=F.relu(self.debn2(self.deconv2(deconv3d))+conv3d_block_2)
-        deconv3d=F.relu(self.debn3(self.deconv3(deconv3d))+conv3d_block_1)
-        deconv3d=F.relu(self.debn4(self.deconv4(deconv3d))+conv3d_out)
+        # deconv3d=F.relu(self.debn1(self.deconv1(conv3d_block_4))+conv3d_block_3)
+        # deconv3d=F.relu(self.debn2(self.deconv2(deconv3d))+conv3d_block_2)
+        # deconv3d=F.relu(self.debn3(self.deconv3(deconv3d))+conv3d_block_1)
+        # deconv3d=F.relu(self.debn4(self.deconv4(deconv3d))+conv3d_out)
 
         deconv3d = F.relu(self.debn1(self.deconv1(conv3d_block_4)))
-        deconv3d = F.relu(self.debn2(self.deconv2(conv3d_block_4))+conv3d_block_3)
+        deconv3d = F.relu(self.debn2(self.deconv2(deconv3d))+conv3d_block_3)
         deconv3d = F.relu(self.debn3(self.deconv3(deconv3d)))
         deconv3d = F.relu(self.debn4(self.deconv4(deconv3d)) + conv3d_block_2)
         deconv3d = F.relu(self.debn5(self.deconv5(deconv3d)))
