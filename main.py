@@ -21,8 +21,8 @@ def normalizeRGB(img):
     return img
 tsfm=transforms.Compose([transforms.ToTensor(),transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))])
 
-h=224
-w=480
+h=256
+w=512
 maxdisp=160 #gc_net.py also need to change  must be a multiple of 32...maybe can cancel the outpadding of deconv
 batch=1
 net = GcNet(h,w,maxdisp, batch)
