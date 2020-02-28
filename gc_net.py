@@ -169,7 +169,7 @@ class GC_NET(nn.Module):
         self.deconv3 = nn.ConvTranspose3d(64, 64, 3, 2, 1, 1, 64)
         self.debn3 = nn.BatchNorm3d(64)
         self.deconv4 = nn.ConvTranspose3d(64, 64, 1, 1, 0, 0)
-        self.debn5 = nn.BatchNorm3d(64)
+        self.debn4 = nn.BatchNorm3d(64)
 
         self.deconv5 = nn.ConvTranspose3d(64, 64, 3, 2, 1, 1, 64)
         self.debn5 = nn.BatchNorm3d(64)
